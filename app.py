@@ -1,6 +1,7 @@
 import requests
 import os
 import json
+import tempfile
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
@@ -19,8 +20,12 @@ def get_cookies():
     """Open Vinted with Selenium, log in, and save cookies."""
     print("🔑 Logging into Vinted to get cookies...")
     
+    # Create a temporary directory to store user data
+    user_data_dir = tempfile.mkdtemp()
+
     options = Options()
-    options.headless = True  # Runs in background (no window)
+    #options.headless = True  # Runs in background (no window)
+    options.add_argument(f"user-data-dir={user_data_dir}")  # Use the unique directory for session
     
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
     driver.get("https://www.vinted.com")
