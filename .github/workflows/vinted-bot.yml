@@ -2,7 +2,7 @@ name: Vinted Bot
 
 on:
   schedule:
-    - cron: "*/1 * * * *" # Runs the bot every 5 minutes
+    - cron: "*/5 * * * *" # Runs the bot every 5 minutes
   workflow_dispatch: # Allow manual trigger
 
 jobs:
