@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 WEBHOOK_URL = "https://discord.com/api/webhooks/1342925652101304330/xxKBNz7qrURFTwlx27zeia4j7yviWRrLIx8p245c5s3jvTE2Tmblh1_fA74Fcq8oNMnK"
 
 # Define the Vinted search URL (you can adjust the search criteria as needed)
-VINTED_URL = 'https://www.vinted.com/clothing'  # Example: Replace with your target search URL
+VINTED_URL = 'https://www.vinted.com/catalog?order=newest_first&time=1740249466&search_text=ralph%20lauren&page=1'  # Example: Replace with your target search URL
 
 # Function to send a message to Discord
 def send_to_discord(item):
