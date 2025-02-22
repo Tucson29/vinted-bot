@@ -5,6 +5,10 @@ on:
     - cron: "*/5 * * * *" # Runs the bot every 5 minutes
   workflow_dispatch: # Allow manual trigger
 
+concurrency:
+  group: vinted-scraper
+  cancel-in-progress: true  # Ensures a new run starts every 5 mins, even if the previous one is still running
+
 jobs:
   run_bot:
     runs-on: ubuntu-latest # Runs on a fresh Ubuntu server
