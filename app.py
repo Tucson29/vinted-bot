@@ -1,9 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
-import os
 
 # Optionally: Fetch the Discord webhook URL from GitHub Secrets
-WEBHOOK_URL = os.getenv('DISCORD_WEBHOOK_URL', 'YOUR_DEFAULT_WEBHOOK_URL')
+WEBHOOK_URL = "https://discord.com/api/webhooks/1342925652101304330/xxKBNz7qrURFTwlx27zeia4j7yviWRrLIx8p245c5s3jvTE2Tmblh1_fA74Fcq8oNMnK"
 
 # Define the Vinted search URL (you can adjust the search criteria as needed)
 VINTED_URL = 'https://www.vinted.com/clothing'  # Example: Replace with your target search URL
@@ -11,7 +10,7 @@ VINTED_URL = 'https://www.vinted.com/clothing'  # Example: Replace with your tar
 # Function to send a message to Discord
 def send_to_discord(item):
     payload = {
-        "content": f"🆕 New item: {item['title']} - {item['link']} (💰 {item['price']})"
+       "content": f"🆕 New item: {item['title']} - {item['link']} (💰 {item['price']})"
     }
     response = requests.post(WEBHOOK_URL, json=payload)
     if response.status_code == 200:
