@@ -27,5 +27,7 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run the Vinted Bot
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}  # Load the secret here
         run: |
           python app.py
