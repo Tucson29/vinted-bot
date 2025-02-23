@@ -27,7 +27,7 @@ def get_cookies():
 
     options = Options()
     #options.headless = True  # Runs in background (no window)
-    options.add_argument(f"user-data-dir={user_data_dir}")  # Use the unique directory for session
+    options.add_argument(f"--user-data-dir={user_data_dir}")  # Use the unique directory for session
     
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
     driver.get("https://www.vinted.com")
