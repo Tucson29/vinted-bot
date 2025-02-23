@@ -148,12 +148,12 @@ def send_to_discord(item):
                 "url": item['url'],
                 "fields": [
                     {
-                        "name": f"Price: {item['price']} {item['currency_code']}",
+                        "name": f"💰 Price: {item['price']} {item['currency_code']}",
                         "value": "",
                         "inline": False
                     },
                     {
-                        "name": f"Size: {item['size']}",
+                        "name": f"📏 Size: {item['size']}",
                         "value": "",
                         "inline": False
                     }
