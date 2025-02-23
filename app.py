@@ -9,7 +9,7 @@ from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 
 CACHE_FILE = "exchange_rate_cache.json"
-WEBHOOK_URL = os.getenv('DISCORD_WEBHOOK_URL', "https://discord.com/api/webhooks/1342925652101304330/xxKBNz7qrURFTwlx27zeia4j7yviWRrLIx8p245c5s3jvTE2Tmblh1_fA74Fcq8oNMnK")
+WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK")
 VINTED_API_URL = "https://www.vinted.hu/api/v2/catalog/items?order=newest_first&time=1740254213&search_text=ralph%20lauren&page=1&location=Budapest"
 
 HEADERS = {
