@@ -76,7 +76,7 @@ def get_exchange_rate():
     # Check if we already have a cached rate
     if exchange_rate_cache["rate"] and exchange_rate_cache["timestamp"]:
         # If the cached rate is less than 6 hours old, return the cached rate
-        if datetime.now() - datetime.fromisoformat(exchange_rate_cache["timestamp"]) < timedelta(hours=6):
+        if datetime.now() - datetime.fromisoformat(exchange_rate_cache["timestamp"]) < timedelta(hours=10):
             print("Using cached exchange rate.")
             return exchange_rate_cache["rate"]
     
