@@ -7,6 +7,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
+import time
 
 CACHE_FILE = "exchange_rate_cache.json"
 WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK")
@@ -179,4 +180,6 @@ def send_to_discord(item):
         print(f"❌ Failed to send to Discord. Status: {response.status_code}, Response: {response.text}")
 
 if __name__ == "__main__":
-    scrape_vinted()
+    for i in range(5):
+        scrape_vinted()
+        time.sleep(60)
