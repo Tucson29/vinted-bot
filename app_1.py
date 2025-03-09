@@ -157,7 +157,7 @@ def send_to_discord(item):
         "embeds": [
             {
                 "title": item['title'],
-                "description": "✨New Raplh Lauren clothing!",
+                "description": "✨New Tommy Hilfiger clothing!",
                 "color": 0x00FFFF,  # Cyan color
                 "url": item['url'],
                 "fields": [
