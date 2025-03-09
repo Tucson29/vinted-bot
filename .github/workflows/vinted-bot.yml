@@ -32,3 +32,4 @@ jobs:
           DISCORD_WEBHOOK_1: ${{ secrets.DISCORD_WEBHOOK_URL_1 }}
         run: |
           python app.py
+          python app_1.py
