@@ -16,10 +16,10 @@ CACHE_FILE = "exchange_rate_cache.json"
 def getVintedAPI():
     with open(CONFIG_FILE, 'r') as file:
         #print("FILE", json.load(file)["vinted_API"]["0"])
-        return (json.load(file)["vinted_API"]["0"])
+        return (json.load(file)["vinted_API"]["1"])
 
 
-WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK")
+WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK_1")
 VINTED_API_URL = getVintedAPI()
 
 HEADERS = {
