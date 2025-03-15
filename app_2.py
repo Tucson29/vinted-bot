@@ -20,7 +20,7 @@ def getVintedAPI():
         return (json.load(file)["vinted_API"]["2"])
 
 
-WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK_1")
+WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK_2")
 VINTED_API_URL = getVintedAPI()
 
 HEADERS = {

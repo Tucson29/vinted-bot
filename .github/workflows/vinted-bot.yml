@@ -38,6 +38,7 @@ jobs:
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }} # Load the secret here
           DISCORD_WEBHOOK_1: ${{ secrets.DISCORD_WEBHOOK_URL_1 }}
+          DISCORD_WEBHOOK_2: ${{ secrets.DISCORD_WEBHOOK_URL_2 }}
         run: |
           python app.py & 
           python app_1.py &
