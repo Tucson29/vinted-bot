@@ -43,7 +43,7 @@ def get_cookies():
     options.add_argument("--disable-dev-shm-usage")
     # REMOVE: options.add_argument("--user-data-dir=...")
     
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+    driver = webdriver.Chrome(executable_path="/usr/bin/chromedriver", options=options)
     driver.get("https://www.vinted.com")
 
     
@@ -122,6 +122,7 @@ def scrape_vinted():
     print("🔎 Scraping Vinted API...")
     response = requests.get(VINTED_API_URL, headers=HEADERS)
     
+    print("STATUS CODE:", response.status_code)
     if response.status_code == 401:  # If authentication fails
         print("⚠️ Authentication failed! Refreshing cookies...")
         get_cookies()  # Refresh cookies

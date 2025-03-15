@@ -7,7 +7,7 @@ on:
 
 concurrency:
   group: vinted-scraper
-  cancel-in-progress: true  # Ensures a new run starts every 5 mins, even if the previous one is still running
+  cancel-in-progress: true # Ensures a new run starts every 5 mins, even if the previous one is still running
 
 jobs:
   run_bot:
@@ -26,9 +26,17 @@ jobs:
         run: |
           pip install -r requirements.txt
 
+      - name: Install Chrome and ChromeDriver
+        run: |
+          sudo apt update
+          sudo apt install -y google-chrome-stable
+          sudo apt install -y chromium-chromedriver
+          echo "Chrome Version: $(google-chrome --version)"
+          echo "ChromeDriver Version: $(chromedriver --version)"
+
       - name: Run the Vinted Bot
         env:
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}   # Load the secret here
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }} # Load the secret here
           DISCORD_WEBHOOK_1: ${{ secrets.DISCORD_WEBHOOK_URL_1 }}
         run: |
           python app.py & 

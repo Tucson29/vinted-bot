@@ -43,7 +43,7 @@ def get_cookies():
     options.add_argument("--disable-dev-shm-usage")
     # REMOVE: options.add_argument("--user-data-dir=...")
     
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+    driver =  webdriver.Chrome(executable_path="/usr/bin/chromedriver", options=options)
     driver.get("https://www.vinted.com")
 
     
