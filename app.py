@@ -11,6 +11,7 @@ import time
 
 CONFIG_FILE = "config.json"
 CACHE_FILE = "exchange_rate_cache.json"
+LAST_SCRAPED_ID_FILE = "last_scraped_ID.json"
 
 
 def getVintedAPI():
@@ -34,7 +35,6 @@ def get_cookies():
     
     # Create a temporary directory to store user data
     user_data_dir = tempfile.mkdtemp()
-
     options = Options()
     #options.headless = True  # Runs in background (no window)
     #options.add_argument(f"--user-data-dir={user_data_dir}")  # Use the unique directory for session
@@ -115,6 +115,15 @@ def convert_usd_to_huf(usd_price):
         return round(huf_price, 2)  # Round to 2 decimal places
     return None
 
+def check_last_ID(ID):
+    with open(COOKIE_FILE, "r") as file:
+        ids = json.load(file)
+    if(ID != ids["larph-lauren"]["1"] and ID != ids["larph-lauren"]["2"]):
+        return True
+    else:
+        return False
+    
+
 def scrape_vinted():
     """Scrape Vinted API with saved cookies."""
     HEADERS["Cookie"] = load_cookies()
@@ -140,17 +149,21 @@ def scrape_vinted():
         return
 
     for item in items[:2]:
+        print("ID:", type(item["id"]))
         print(item)
-        item_data = {
-            "title": item["title"],
-            "price": round(float(item["total_item_price"]["amount"])),
-            "currency_code": item["total_item_price"]["currency_code"],
-            "url": f"https://www.vinted.com/items/{item['id']}",
-            "photo": item["photo"]["url"],
-            "size": item["size_title"]
-            
-        }
-        send_to_discord(item_data)
+        if(check_last_ID(item["id"])):
+            item_data = {
+                "title": item["title"],
+                "price": round(float(item["total_item_price"]["amount"])),
+                "currency_code": item["total_item_price"]["currency_code"],
+                "url": f"https://www.vinted.com/items/{item['id']}",
+                "photo": item["photo"]["url"],
+                "size": item["size_title"]
+                
+            }
+            send_to_discord(item_data)
+        else:
+            return
 
 def send_to_discord(item):
     #payload
