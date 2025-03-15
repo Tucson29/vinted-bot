@@ -43,7 +43,7 @@ def get_cookies():
     options.add_argument("--disable-dev-shm-usage")
     # REMOVE: options.add_argument("--user-data-dir=...")
     
-    driver = webdriver.Chrome(service=Service(executable_path="/usr/bin/chromedriver"), options=options)
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
     driver.get("https://www.vinted.com")
 
     
@@ -116,13 +116,24 @@ def convert_usd_to_huf(usd_price):
     return None
 
 def check_last_ID(ID):
-    with open(COOKIE_FILE, "r") as file:
+    print(ID)
+    with open(LAST_SCRAPED_ID_FILE, "r") as file:
         ids = json.load(file)
-    if(ID != ids["larph-lauren"]["1"] and ID != ids["larph-lauren"]["2"]):
+    print("JSON:", ids["ralph-lauren"])
+    if(ID != ids["ralph-lauren"][0] and ID != ids["ralph-lauren"][1]):  # [0] -> 2. ||| [1] -> 1.
+        ids["ralph-lauren"].insert(100, ID)
+        print(ids["ralph-lauren"])
+        ids["ralph-lauren"].pop(0)
+        print("NEW FILE:", ids)
+        with open(LAST_SCRAPED_ID_FILE, "w") as file:
+            json.dump(ids, file, indent=4)  # Save with formatting
+
         return True
     else:
+        print("🕙 Waiting 60 seconds for the next drop...")
         return False
-    
+
+
 
 def scrape_vinted():
     """Scrape Vinted API with saved cookies."""
@@ -149,8 +160,7 @@ def scrape_vinted():
         return
 
     for item in items[:2]:
-        print("ID:", type(item["id"]))
-        print(item)
+        #print(item)
         if(check_last_ID(item["id"])):
             item_data = {
                 "title": item["title"],
