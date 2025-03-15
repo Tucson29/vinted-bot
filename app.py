@@ -20,7 +20,7 @@ def getVintedAPI():
         return (json.load(file)["vinted_API"]["0"])
 
 
-WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK")
+WEBHOOK_URL = "https://discord.com/api/webhooks/1343185978252202014/Oo7PWy2a23QoNMZRhtdkipaVTYqBaaGFiWn_tnuFl8UhnmFFOSGwFi2dxMRrEG47D77L"
 VINTED_API_URL = getVintedAPI()
 
 HEADERS = {

@@ -1,7 +1,11 @@
 {
     "vinted_API": {
-        "0": "https://www.vinted.hu/api/v2/catalog/items?order=newest_first&time=1740254213&search_text=ralph%20lauren&page=1&location=Budapest",
+        "-0": "https://www.vinted.hu/api/v2/catalog/items?order=newest_first&time=1740254213&search_text=ralph%20lauren&page=1&location=Budapest",
+        "0": "https://www.vinted.hu/api/v2/catalog/items?order=newest_first&time=1740254213&search_text=ralph%20lauren&page=1&location=Hungary&search_id=21724105198",
         "1": "https://www.vinted.hu/api/v2/catalog/items?order=newest_first&time=1740254213&search_text=tommy%20hilfiger&page=1&location=Budapest",
-        "2": "..."
+        "2": "...",
+        "3": "...",
+        "4": "...",
+        "5": "..."
     }
 }
