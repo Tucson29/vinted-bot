@@ -132,9 +132,7 @@ def check_last_ID(ID):
     else:
         print("🕙 Waiting 60 seconds for the next drop...")
         return False
-
-
-
+    
 def scrape_vinted():
     """Scrape Vinted API with saved cookies."""
     HEADERS["Cookie"] = load_cookies()
@@ -160,7 +158,7 @@ def scrape_vinted():
         return
 
     for item in items[:2]:
-        #print(item)
+        print(item)
         if(check_last_ID(item["id"])):
             item_data = {
                 "title": item["title"],
@@ -168,8 +166,9 @@ def scrape_vinted():
                 "currency_code": item["total_item_price"]["currency_code"],
                 "url": f"https://www.vinted.com/items/{item['id']}",
                 "photo": item["photo"]["url"],
-                "size": item["size_title"]
-                
+                "size": item["size_title"],
+                "brand": item["brand_title"],
+                "status": item["status"]
             }
             send_to_discord(item_data)
         else:
@@ -186,14 +185,24 @@ def send_to_discord(item):
                 "url": item['url'],
                 "fields": [
                     {
-                        "name": f"💰 Price: {item['price']} {item['currency_code']}",
-                        "value": "",
+                        "name": "💰 Price",
+                        "value": f"{item['price']} {item['currency_code']}",
                         "inline": False
                     },
                     {
-                        "name": f"📏 Size: {item['size']}",
-                        "value": "",
-                        "inline": False
+                        "name": "🏷️ Brand",
+                        "value": f"{item['brand']}",
+                        "inline": True
+                    },
+                    {
+                        "name": "📏 Size",
+                        "value": f"{item['size']}",
+                        "inline": True
+                    },
+                    {
+                        "name": "🧵 Status",
+                        "value": f"{item['status']}",
+                        "inline": True
                     }
                 ],
                 "image": {
@@ -213,6 +222,6 @@ def send_to_discord(item):
         print(f"❌ Failed to send to Discord. Status: {response.status_code}, Response: {response.text}")
 
 if __name__ == "__main__":
-    for i in range(10):
+    for i in range(20):
         scrape_vinted()
         time.sleep(60)
