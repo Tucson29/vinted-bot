@@ -211,6 +211,6 @@ def send_to_discord(item):
         print(f"❌ Failed to send to Discord. Status: {response.status_code}, Response: {response.text}")
 
 if __name__ == "__main__":
-    for i in range(5):
+    for i in range(20):
         scrape_vinted()
         time.sleep(60)
