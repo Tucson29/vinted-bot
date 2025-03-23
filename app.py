@@ -203,7 +203,7 @@ def send_to_discord(item):
                         "inline": True
                     },
                     {
-                        "name": "🧵 Status",
+                        "name": "🧵 Condition",
                         "value": f"{item['status']}",
                         "inline": True
                     }
