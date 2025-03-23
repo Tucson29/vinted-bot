@@ -169,13 +169,13 @@ def scrape_vinted():
                 "currency_code": item["total_item_price"]["currency_code"],
                 "url": f"https://www.vinted.com/items/{item['id']}",
                 "photo": item["photo"]["url"],
-                "size": item["size_title"]
-                
+                "size": item["size_title"],
+                "brand": item["brand_title"],
+                "status": item["status"]
             }
             send_to_discord(item_data)
         else:
             return
-
 
 def send_to_discord(item):
     #payload
@@ -188,14 +188,24 @@ def send_to_discord(item):
                 "url": item['url'],
                 "fields": [
                     {
-                        "name": f"💰 Price: {item['price']} {item['currency_code']}",
-                        "value": "",
+                        "name": "💰 Price",
+                        "value": f"{item['price']} {item['currency_code']}",
                         "inline": False
                     },
                     {
-                        "name": f"📏 Size: {item['size']}",
-                        "value": "",
-                        "inline": False
+                        "name": "🏷️ Brand",
+                        "value": f"{item['brand']}",
+                        "inline": True
+                    },
+                    {
+                        "name": "📏 Size",
+                        "value": f"{item['size']}",
+                        "inline": True
+                    },
+                    {
+                        "name": "🧵 Status",
+                        "value": f"{item['status']}",
+                        "inline": True
                     }
                 ],
                 "image": {
